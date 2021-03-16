@@ -4,7 +4,7 @@
 
 Instalar `geopy` y `pandas`
 
-    pip install geopy pandas
+    pip install -r requirements.txt
 
 ## Utilizar
 
