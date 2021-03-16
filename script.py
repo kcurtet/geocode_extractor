@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """Import geocode data from google."""
 
-# Librerias usadas en el programa
-# pip install pandas geopy
-
 import json
 from datetime import datetime
 import pandas as pd
