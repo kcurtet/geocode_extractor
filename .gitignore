@@ -1,4 +1,5 @@
-/google_raw.json
 /*.csv
 /.env
 /venv/
+/fallidas.txt
+/google_debug.json

@@ -1,0 +1,631 @@
+[03/16/2021, 15:04:12] [Nueva Busqueda]:
+[
+    {
+        "address_components": [
+            {
+                "long_name": "Herat",
+                "short_name": "Herat",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Qoul Urdo",
+                "short_name": "Qoul Urdo",
+                "types": [
+                    "political",
+                    "sublocality",
+                    "sublocality_level_1"
+                ]
+            },
+            {
+                "long_name": "Injil",
+                "short_name": "Injil",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Herat",
+                "short_name": "Herat",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Afghanistan",
+                "short_name": "AF",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            }
+        ],
+        "formatted_address": "Herat, Afghanistan",
+        "geometry": {
+            "location": {
+                "lat": 34.3649983,
+                "lng": 62.21246989999999
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 34.3663472802915,
+                    "lng": 62.2138188802915
+                },
+                "southwest": {
+                    "lat": 34.3636493197085,
+                    "lng": 62.21112091970849
+                }
+            }
+        },
+        "partial_match": true,
+        "place_id": "ChIJyS151PTmPD8RYk3pGSAoZss",
+        "plus_code": {
+            "compound_code": "9676+XX Herat, Afghanistan",
+            "global_code": "8J649676+XX"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    },
+    {
+        "address_components": [
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Shahre Naow",
+                "short_name": "Shahre Naow",
+                "types": [
+                    "political",
+                    "sublocality",
+                    "sublocality_level_1"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Afghanistan",
+                "short_name": "AF",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            }
+        ],
+        "formatted_address": "Froshgah Street, Kabul, Afghanistan\u060c Kabul, Afghanistan",
+        "geometry": {
+            "location": {
+                "lat": 34.5202778,
+                "lng": 69.1780556
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 34.52162678029149,
+                    "lng": 69.17940458029149
+                },
+                "southwest": {
+                    "lat": 34.51892881970849,
+                    "lng": 69.17670661970848
+                }
+            }
+        },
+        "place_id": "ChIJ_dEmJ_1r0TgRXXX7N7pCiYU",
+        "plus_code": {
+            "compound_code": "G5CH+46 Kabul, Afghanistan",
+            "global_code": "8J6FG5CH+46"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    },
+    {
+        "address_components": [
+            {
+                "long_name": "Sulh Road",
+                "short_name": "Sulh Rd",
+                "types": [
+                    "route"
+                ]
+            },
+            {
+                "long_name": "Wazir Akbar Khan",
+                "short_name": "Wazir Akbar Khan",
+                "types": [
+                    "political",
+                    "sublocality",
+                    "sublocality_level_1"
+                ]
+            },
+            {
+                "long_name": "Kabol",
+                "short_name": "Kabol",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Afghanistan",
+                "short_name": "AF",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            }
+        ],
+        "formatted_address": "Sulh Rd, Kabol, Afghanistan",
+        "geometry": {
+            "location": {
+                "lat": 34.5311617,
+                "lng": 69.1772113
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 34.53251068029149,
+                    "lng": 69.17856028029149
+                },
+                "southwest": {
+                    "lat": 34.5298127197085,
+                    "lng": 69.17586231970849
+                }
+            }
+        },
+        "partial_match": true,
+        "place_id": "ChIJYTA-krBu0TgR5tffIVsO7hw",
+        "plus_code": {
+            "compound_code": "G5JG+FV Kabul, Afghanistan",
+            "global_code": "8J6FG5JG+FV"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    },
+    {
+        "address_components": [
+            {
+                "long_name": "S/N",
+                "short_name": "S/N",
+                "types": [
+                    "street_number"
+                ]
+            },
+            {
+                "long_name": "Carrer de Fabra Pompeu",
+                "short_name": "Carrer de Fabra Pompeu",
+                "types": [
+                    "route"
+                ]
+            },
+            {
+                "long_name": "Empuriabrava",
+                "short_name": "Empuriabrava",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Girona",
+                "short_name": "GI",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Catalunya",
+                "short_name": "CT",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Spain",
+                "short_name": "ES",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "17487",
+                "short_name": "17487",
+                "types": [
+                    "postal_code"
+                ]
+            }
+        ],
+        "formatted_address": "Carrer de Fabra Pompeu, S/N, 17487 Empuriabrava, Girona, Spain",
+        "geometry": {
+            "location": {
+                "lat": 42.2400551,
+                "lng": 3.123544
+            },
+            "location_type": "ROOFTOP",
+            "viewport": {
+                "northeast": {
+                    "lat": 42.2414040802915,
+                    "lng": 3.124892980291502
+                },
+                "southwest": {
+                    "lat": 42.2387061197085,
+                    "lng": 3.122195019708498
+                }
+            }
+        },
+        "place_id": "ChIJsaRnMLFhuhIROE74TjGKVL0",
+        "plus_code": {
+            "compound_code": "64RF+2C Empuriabrava, Spain",
+            "global_code": "8FJ564RF+2C"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    }
+][03/16/2021, 15:12:03] [Nueva Busqueda]:
+[
+    {
+        "address_components": [
+            {
+                "long_name": "Herat",
+                "short_name": "Herat",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Qoul Urdo",
+                "short_name": "Qoul Urdo",
+                "types": [
+                    "political",
+                    "sublocality",
+                    "sublocality_level_1"
+                ]
+            },
+            {
+                "long_name": "Injil",
+                "short_name": "Injil",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Herat",
+                "short_name": "Herat",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Afghanistan",
+                "short_name": "AF",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            }
+        ],
+        "formatted_address": "Herat, Afghanistan",
+        "geometry": {
+            "location": {
+                "lat": 34.3649983,
+                "lng": 62.21246989999999
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 34.3663472802915,
+                    "lng": 62.2138188802915
+                },
+                "southwest": {
+                    "lat": 34.3636493197085,
+                    "lng": 62.21112091970849
+                }
+            }
+        },
+        "partial_match": true,
+        "place_id": "ChIJyS151PTmPD8RYk3pGSAoZss",
+        "plus_code": {
+            "compound_code": "9676+XX Herat, Afghanistan",
+            "global_code": "8J649676+XX"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    },
+    {
+        "address_components": [
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Shahre Naow",
+                "short_name": "Shahre Naow",
+                "types": [
+                    "political",
+                    "sublocality",
+                    "sublocality_level_1"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Afghanistan",
+                "short_name": "AF",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            }
+        ],
+        "formatted_address": "Froshgah Street, Kabul, Afghanistan\u060c Kabul, Afghanistan",
+        "geometry": {
+            "location": {
+                "lat": 34.5202778,
+                "lng": 69.1780556
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 34.52162678029149,
+                    "lng": 69.17940458029149
+                },
+                "southwest": {
+                    "lat": 34.51892881970849,
+                    "lng": 69.17670661970848
+                }
+            }
+        },
+        "place_id": "ChIJ_dEmJ_1r0TgRXXX7N7pCiYU",
+        "plus_code": {
+            "compound_code": "G5CH+46 Kabul, Afghanistan",
+            "global_code": "8J6FG5CH+46"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    },
+    {
+        "address_components": [
+            {
+                "long_name": "Sulh Road",
+                "short_name": "Sulh Rd",
+                "types": [
+                    "route"
+                ]
+            },
+            {
+                "long_name": "Wazir Akbar Khan",
+                "short_name": "Wazir Akbar Khan",
+                "types": [
+                    "political",
+                    "sublocality",
+                    "sublocality_level_1"
+                ]
+            },
+            {
+                "long_name": "Kabol",
+                "short_name": "Kabol",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Kabul",
+                "short_name": "Kabul",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Afghanistan",
+                "short_name": "AF",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            }
+        ],
+        "formatted_address": "Sulh Rd, Kabol, Afghanistan",
+        "geometry": {
+            "location": {
+                "lat": 34.5311617,
+                "lng": 69.1772113
+            },
+            "location_type": "GEOMETRIC_CENTER",
+            "viewport": {
+                "northeast": {
+                    "lat": 34.53251068029149,
+                    "lng": 69.17856028029149
+                },
+                "southwest": {
+                    "lat": 34.5298127197085,
+                    "lng": 69.17586231970849
+                }
+            }
+        },
+        "partial_match": true,
+        "place_id": "ChIJYTA-krBu0TgR5tffIVsO7hw",
+        "plus_code": {
+            "compound_code": "G5JG+FV Kabul, Afghanistan",
+            "global_code": "8J6FG5JG+FV"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    },
+    {
+        "address_components": [
+            {
+                "long_name": "S/N",
+                "short_name": "S/N",
+                "types": [
+                    "street_number"
+                ]
+            },
+            {
+                "long_name": "Carrer de Fabra Pompeu",
+                "short_name": "Carrer de Fabra Pompeu",
+                "types": [
+                    "route"
+                ]
+            },
+            {
+                "long_name": "Empuriabrava",
+                "short_name": "Empuriabrava",
+                "types": [
+                    "locality",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Girona",
+                "short_name": "GI",
+                "types": [
+                    "administrative_area_level_2",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Catalunya",
+                "short_name": "CT",
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "Spain",
+                "short_name": "ES",
+                "types": [
+                    "country",
+                    "political"
+                ]
+            },
+            {
+                "long_name": "17487",
+                "short_name": "17487",
+                "types": [
+                    "postal_code"
+                ]
+            }
+        ],
+        "formatted_address": "Carrer de Fabra Pompeu, S/N, 17487 Empuriabrava, Girona, Spain",
+        "geometry": {
+            "location": {
+                "lat": 42.2400551,
+                "lng": 3.123544
+            },
+            "location_type": "ROOFTOP",
+            "viewport": {
+                "northeast": {
+                    "lat": 42.2414040802915,
+                    "lng": 3.124892980291502
+                },
+                "southwest": {
+                    "lat": 42.2387061197085,
+                    "lng": 3.122195019708498
+                }
+            }
+        },
+        "place_id": "ChIJsaRnMLFhuhIROE74TjGKVL0",
+        "plus_code": {
+            "compound_code": "64RF+2C Empuriabrava, Spain",
+            "global_code": "8FJ564RF+2C"
+        },
+        "types": [
+            "establishment",
+            "lodging",
+            "point_of_interest"
+        ]
+    }
+]
