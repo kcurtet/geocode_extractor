@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Import geocode data from google."""
 
+import os
 import json
 from datetime import datetime
 import pandas as pd
 from geopy import geocoders
+from dotenv import load_dotenv
 
-CLAVE_API = ""
+load_dotenv()
+
+CLAVE_API = os.getenv("GOOGLE_API") or ""
 
 # Nombre del csv en la misma carpeta
 # El csv necesita las columnas "hotel" y "direccion"
