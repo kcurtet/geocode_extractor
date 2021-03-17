@@ -101,7 +101,7 @@ def main():
 
     # Lista de columnas prara darle a pandas
     columnas_a_exportar = list(columnas.keys())
-    columnas_a_exportar.insert(0, "nombre")
+    columnas_a_exportar.insert(0, COLUMNA_NOMBRE)
 
     # En los resultados solo queremos las columnas nuevas.
     # con el nombre de cada hotel
