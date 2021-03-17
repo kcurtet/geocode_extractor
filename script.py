@@ -8,60 +8,68 @@ from dotenv import load_dotenv
 from helpers import (generar_texto_busqueda, guardar_respuesta,
                      write_busquedas_fallidas, write_json)
 
+# Cargar archivo .env
 load_dotenv()
 
+# La Clave API sacada de .env o entre ""
 CLAVE_API = os.getenv("GOOGLE_API") or ""
 
-# Nombre del csv en la misma carpeta
-# El csv necesita las columnas "hotel" y "direccion"
+# Nombre de archivos
 NOMBRE_CSV = "direcciones.csv"
-
-# Archivo csv resultado. en la misma carpeta.
 NOMBRE_RESULTADO = "resultado.csv"
 
-# Lenguage Google Api
+# Columnas del csv para hacer la busqueda
+COLUMNA_NOMBRE = "nombre"
+COLUMNA_DIRECCION = "direccion"
+
+# Idioma para Google Geocode API
 LANGUAGE = "fr"
 
-# DEBUG: Para guardar respuestas de google en google_raw.json
+# Guardar las respuestas de google en DEBUG_FILE
 DEBUG = True
+DEBUG_FILE = 'google_debug.json'
 
+
+# Verifica los parametros necesarios.
 if not CLAVE_API or not NOMBRE_CSV or not NOMBRE_RESULTADO:
-    raise Exception("Verifica la Clave API o los nombre de archivos")
-
-# Cargar el csv en una variable.
-datos_csv = pd.read_csv(NOMBRE_CSV, sep=";")  # sep es el sarador del csv
-
-# Como no puedo guardar los datos directamente en el csv
-# necessito crear unas lista por cada COLUMNA que voy a
-# añadir al csv.
-columnas = {
-    'latitud': [],
-    'longitud': [],
-    'address': [],
-    'pais': [],
-    'pais_short': [],
-    'area_1': [],
-    'area_1_short': [],
-    'area_2': [],
-    'area_2_short': [],
-    'localidad': [],
-    'localidad_short': [],
-    'calle': [],
-    'numero_calle': [],
-    'codigo_postal': [],
-    'location_type': [],
-}
+    raise Exception(
+        "Verifica la Configuración: CLAVE_API, NOMBRE_CSV, NOMBRE_RESULTADO")
 
 
 def main():
-    # Datos para hacer la busqueda. (El orden es importante)
-    hoteles_para_busqueda = datos_csv[["direccion", "nombre"]].values
+    # Como no puedo guardar los datos directamente en el csv
+    # necessito crear unas lista por cada COLUMNA que voy a
+    # añadir al csv.
+    columnas = {
+        'latitud': [],
+        'longitud': [],
+        'address': [],
+        'pais': [],
+        'pais_short': [],
+        'area_1': [],
+        'area_1_short': [],
+        'area_2': [],
+        'area_2_short': [],
+        'localidad': [],
+        'localidad_short': [],
+        'calle': [],
+        'numero_calle': [],
+        'codigo_postal': [],
+        'location_type': [],
+    }
 
     # Guardar respuestas google.
     raw = []
 
     # Guardar busquedas sin respuesta.
     busquedas_fallidas = []
+
+    # Cargar el csv en una variable.
+    datos_csv = pd.read_csv(NOMBRE_CSV, sep=";")  # sep es el sarador del csv
+
+    # Datos para hacer la busqueda. (El orden es importante)
+    hoteles_para_busqueda = datos_csv[
+        [COLUMNA_DIRECCION, COLUMNA_NOMBRE]].values
 
     # Preparar el geocoder
     google = geocoders.GoogleV3(api_key=CLAVE_API)
@@ -78,7 +86,7 @@ def main():
         respuesta = google.geocode(BUSQUEDA, language=LANGUAGE)
 
         # Si la respuesta NO ha encontrado nada.
-        if respuesta is not None:
+        if respuesta is None:
             busquedas_fallidas.append(BUSQUEDA)
             print("Outch... Sin Respuesta para:\n" + BUSQUEDA)
 
@@ -105,19 +113,25 @@ def main():
     print("Resultados:")
     print(datos_para_resultado)
 
+    # Guardar busquedas fallidas
+    write_busquedas_fallidas(busquedas_fallidas)
     # Imprimir busquedas fallidas.
     print("---------------------------------------------")
     print("Busquedas sin encontrar (mirar archivo fallidas.txt):")
     for busqueda in busquedas_fallidas:
         print(busqueda)
 
+    print("---------------------------------------------")
+    print("Guardando " + NOMBRE_RESULTADO + "...")
     # Guardar los resultados.
     datos_para_resultado.to_csv(NOMBRE_RESULTADO, sep=";", index=False)
-    # Guardar busquedas fallidas
-    write_busquedas_fallidas(busquedas_fallidas)
+
     # Guardar respuestas de google.
     if DEBUG:
-        write_json('google_debug.json', raw)
+        print("Guardando " + DEBUG_FILE + "...")
+        write_json(DEBUG_FILE, raw)
+
+    print("Busqueda acabada! con {} fallos".format(len(busquedas_fallidas)))
 
 
 if __name__ == "__main__":
