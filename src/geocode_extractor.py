@@ -4,7 +4,7 @@
 import pandas as pd
 from geopy import geocoders
 import constants as c
-from helpers import (guardar_respuesta, generar_salida, generar_texto_busqueda)
+from helpers import (guardar_respuesta, generar_resultado, generar_salida)
 
 # Las variables ahora estan en constants.py
 
@@ -15,9 +15,9 @@ if not c.CLAVE_API or not c.NOMBRE_CSV or not c.NOMBRE_RESULTADO:
 
 
 def main():
-    # Como no puedo guardar los datos directamente en el csv
-    # necessito crear unas lista por cada COLUMNA que voy a
-    # añadir al csv.
+    """Inicia el programa."""
+
+    # Columnas para guardar datos de google.
     columnas = {
         'latitud': [],
         'longitud': [],
@@ -37,52 +37,48 @@ def main():
     }
 
     # Guardar respuestas google.
-    raw = []
+    respuestas_raw = []
 
     # Guardar busquedas sin respuesta.
     busquedas_fallidas = []
 
-    # Cargar el csv en una variable.
-    datos_csv = pd.read_csv(c.NOMBRE_CSV, sep=";")  # sep es el sarador del csv
-
-    # Datos para hacer la busqueda. (El orden es importante)
-    hoteles_para_busqueda = datos_csv[
-        [c.COLUMNA_DIRECCION, c.COLUMNA_NOMBRE]].values
+    # Leer csv.
+    datos_csv = pd.read_csv(c.NOMBRE_CSV, sep=";")
 
     # Preparar el geocoder
     google = geocoders.GoogleV3(api_key=c.CLAVE_API)
 
+    # Filtrar columnas para la busqueda. (El orden es importante)
+    lista_de_hoteles = datos_csv[[c.COLUMNA_DIRECCION, c.COLUMNA_NOMBRE]]
+
     # Por cada hotel en la LISTA. ejecuta este codigo
-    for fila_hotel in hoteles_para_busqueda:
+    for hotel in lista_de_hoteles.values:
 
-        BUSQUEDA = generar_texto_busqueda(fila_hotel[0], fila_hotel[1])
-
+        # 0: direccion,  1: nombre
+        busqueda = f"{hotel[0]} {hotel[1]}"
         print("------------------------------------")
-        print("Buscando:\n" + BUSQUEDA)
+        print("Buscando:\n" + busqueda)
 
         # Ejecutar Busqueda.
-        respuesta = google.geocode(BUSQUEDA, language=c.LANGUAGE)
+        respuesta = google.geocode(busqueda, language=c.LANGUAGE)
 
         # Si la respuesta NO ha encontrado nada.
         if respuesta is None:
-            busquedas_fallidas.append(BUSQUEDA)
-            print("Outch... Sin Respuesta para:\n" + BUSQUEDA)
+            busquedas_fallidas.append(busqueda)
+            print("Outch... Sin Respuesta para:\n" + busqueda)
+        elif c.DEBUG:
+            respuestas_raw.append(respuesta.raw)
 
         guardar_respuesta(respuesta, columnas)
 
-        if c.DEBUG:
-            raw.append(respuesta.raw)
-
     # Agreagar columnas al csv.
-    for key in columnas.keys():
-        datos_csv[key] = columnas[key]
+    for nombre_columna in columnas:
+        datos_csv[nombre_columna] = columnas[nombre_columna]
 
     # Filtrar resultados.
-    columnas_a_exportar = list(columnas.keys())
-    columnas_a_exportar.insert(0, c.COLUMNA_NOMBRE)
-    resultado = datos_csv[columnas_a_exportar]
+    resultado = generar_resultado(datos_csv, columnas)
 
-    generar_salida(resultado, busquedas_fallidas, raw)
+    generar_salida(resultado, busquedas_fallidas, respuestas_raw)
 
 
 if __name__ == "__main__":

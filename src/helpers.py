@@ -1,3 +1,4 @@
+"""Helper functions."""
 import json
 from datetime import datetime
 import constants as c
@@ -11,14 +12,6 @@ def extraer_attributo(respuesta_raw, attributo, short=False):
         if attributo in component['types']:
             return component['short_name'] if short else component['long_name']
     return attributo + " no encontrado"
-
-
-def generar_texto_busqueda(direccion, hotel):
-    """Generar cadena de texto para la busqueda del geocoder"""
-    return "{direccion} {hotel}".format(
-        direccion=direccion.encode(),
-        hotel=hotel.encode()
-    )
 
 
 def print_log(out, msg):
@@ -90,6 +83,12 @@ def guardar_respuesta(respuesta, columnas):
 
         columnas['location_type'].append(
             respuesta.raw['geometry']['location_type'])
+
+
+def generar_resultado(datos_csv, columnas):
+    columnas_a_exportar = list(columnas.keys())
+    columnas_a_exportar.insert(0, c.COLUMNA_NOMBRE)
+    return datos_csv[columnas_a_exportar]
 
 
 def generar_salida(resultado, busquedas_fallidas, raw):

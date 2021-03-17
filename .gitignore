@@ -4,3 +4,4 @@
 /fallidas.txt
 /google_debug.json
 /src/geocode_extractor.egg-info/
+/src/__pycache__/
