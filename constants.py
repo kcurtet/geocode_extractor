@@ -5,11 +5,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # La Clave API sacada de .env o entre ""
-CLAVE_API = os.getenv("GOOGLE_API") or ""
+GOOGLE_API = os.getenv("GOOGLE_API") or ""
 
 # Nombre de archivos
-NOMBRE_CSV = "direcciones.csv"
-NOMBRE_RESULTADO = "resultado.csv"
+INPUT_CSV = "direcciones.csv"
+OUTPUT_CSV = "resultado.csv"
 
 # Columnas del csv para hacer la busqueda
 COLUMNA_NOMBRE = "nombre"

@@ -1,14 +1,24 @@
-# Sript para Google Geocode API
+# Google Geocode API Extractor
 
-## Requerimientos
+Programa para leer direcciones de un csv y guardar los datos
+devueltos por Google Geocode API en otro csv.
 
-Instalar `geopy` y `pandas`
+## Instalación
 
-    pip install -r requirements.txt
+``` shell
+pip install -r requirements.txt
+# o
+pip install pandas geopy python-dotenv
+```
 
-## Utilizar
 
-Cambiar las variables `NOMBRE_CSV`, `RESULTADO_CSV`, `CLAVE_API` y ejecutar script
+## Utilización
 
-    python script.py
+Primero hay que configurar las variables `GOOGLE_API`, `INPUT_CSV` y `OUTPUT_CSV` en `constants.py`
+
+Luego ejecutar el programa
+
+``` shell
+python run.py
+```
 
