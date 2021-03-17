@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import constants as c
 
 
 def extraer_attributo(respuesta_raw, attributo, short=False):
@@ -90,3 +91,30 @@ def guardar_respuesta(respuesta, columnas):
         columnas['location_type'].append(
             respuesta.raw['geometry']['location_type'])
 
+
+def generar_salida(resultado, busquedas_fallidas, raw):
+    # Imprimir resultados por consola.
+    # Puedes commentarlo si hay muchas direcciones que buscar.
+    print("---------------------------------------------")
+    print("Resultados:")
+    print(resultado)
+
+    # Guardar busquedas fallidas
+    write_busquedas_fallidas(busquedas_fallidas)
+    # Imprimir busquedas fallidas.
+    print("---------------------------------------------")
+    print("Busquedas sin encontrar (mirar archivo fallidas.txt):")
+    for busqueda in busquedas_fallidas:
+        print(busqueda)
+
+    print("---------------------------------------------")
+    print("Guardando " + c.NOMBRE_RESULTADO + "...")
+    # Guardar los resultados.
+    resultado.to_csv(c.NOMBRE_RESULTADO, sep=";", index=False)
+
+    # Guardar respuestas de google.
+    if c.DEBUG:
+        print("Guardando " + c.DEBUG_FILE + "...")
+        write_json(c.DEBUG_FILE, raw)
+
+    print("Busqueda acabada! con {} fallos".format(len(busquedas_fallidas)))
