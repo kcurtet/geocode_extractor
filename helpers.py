@@ -108,6 +108,12 @@ def buscar_locations(entrada, salida):
 
     fallidas = []
 
+    print(f"Se buscaran {len(lista_hoteles)} direcciones")
+    respuesta_usuario = input("Continuar? (Y/n): ")
+
+    if respuesta_usuario.lower() != "y":
+        exit(0)
+
     try:
         output = pd.read_csv(salida, sep=";")
         ultimo_resultado = len(output)
