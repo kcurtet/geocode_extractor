@@ -3,142 +3,117 @@ import os.path
 from geopy import geocoders
 import pandas as pd
 import constants as c
-from datetime import datetime
 
 
-def extraer_attributo(respuesta, attributo, short=False):
+def pedir_google_geocode(cliente, busqueda):
+    try:
+        return cliente.geocode(busqueda, language=c.LANGUAGE)
+    except Exception:
+        raise Exception("Error Geopy: No se puede conectar con google.")
+
+
+def get_address_component(respuesta, attributo, short=False):
     """Sacar el ATTRIBUTO de la respuesta de google."""
     address_components = respuesta.raw['address_components']
 
     for component in address_components:
         if attributo in component['types']:
             return component['short_name'] if short else component['long_name']
+
     return attributo + " no encontrado"
 
 
-def leer_entrada(entrada, columnas):
-    data = pd.read_csv(entrada, sep=";")
-    print("---------------------------------------------------------")
-    print("Leyendo archivo " + entrada)
-    return data[columnas].values
-
-
-def generar_busqueda(hotel):
-    return f"{hotel[0]} {hotel[1]}"
-
-
-def buscar_resultados(busqueda, api_key, language):
-    google = geocoders.GoogleV3(api_key=api_key)
-    print("---------------------------------------------------------")
-    print("Buscado resultados para:\n" + busqueda)
-    return google.geocode(busqueda.encode(), language=language)
-
-
-def extraer_valor_para(key, respuesta):
+def extraer_datos_google(columna, respuesta):
     switcher = {
         'latitud': respuesta.latitude,
         'longitud': respuesta.longitude,
         'address': respuesta.address,
-        'pais': extraer_attributo(respuesta, "country"),
-        'pais_short': extraer_attributo(respuesta, "country", short=True),
-        'area_1': extraer_attributo(
+        'pais': get_address_component(respuesta, "country"),
+        'pais_short': get_address_component(respuesta, "country", short=True),
+        'area_1': get_address_component(
             respuesta, "administrative_area_level_1"),
-        'area_1_short': extraer_attributo(
+        'area_1_short': get_address_component(
             respuesta, "administrative_area_level_1", short=True),
-        'area_2': extraer_attributo(
+        'area_2': get_address_component(
             respuesta, "administrative_area_level_2"),
-        'area_2_short': extraer_attributo(
+        'area_2_short': get_address_component(
             respuesta, "administrative_area_level_2", short=True),
-        'localidad': extraer_attributo(respuesta, "locality"),
-        'localidad_short': extraer_attributo(
+        'localidad': get_address_component(respuesta, "locality"),
+        'localidad_short': get_address_component(
             respuesta, "locality", short=True),
-        'calle': extraer_attributo(respuesta, "route"),
-        'numero_calle': extraer_attributo(respuesta, "street_number"),
-        'codigo_postal': extraer_attributo(respuesta, "postal_code"),
+        'calle': get_address_component(respuesta, "route"),
+        'numero_calle': get_address_component(respuesta, "street_number"),
+        'codigo_postal': get_address_component(respuesta, "postal_code"),
         'location_type': respuesta.raw['geometry']['location_type'],
     }
 
-    return switcher[key]
+    return switcher.get(columna, 'Columna sin definir')
 
 
-def extraer_datos_google(respuesta):
-
-    COLUMNAS = ['latitud', 'longitud', 'pais', 'pais_short',
+def generar_fila_csv(respuesta):
+    columnas = ['latitud', 'longitud', 'pais', 'pais_short',
                 'area_1', 'area_1_short', 'area_2', 'area_2_short',
                 'localidad', 'localidad_short', 'calle', 'numero_calle',
                 'codigo_postal', 'location_type']
 
-    result = {}
-
+    datos = []
     if respuesta is None:
-        for key in COLUMNAS:
-            result[key] = ["No Hay resultado"]
+        for columna in columnas:
+            datos.append("Sin repuesta de google")
     else:
-        for key in COLUMNAS:
-            result[key] = [extraer_valor_para(key, respuesta)]
+        for columna in columnas:
+            datos.append(extraer_datos_google(columna, respuesta))
 
-    return pd.DataFrame(result, columns=COLUMNAS)
-
-
-def guardar_resupuesta(nombre, respuesta, salida):
-    fila = extraer_datos_google(respuesta)
-    fila = pd.DataFrame({'nombre': [nombre]}).join(fila)
-    if os.path.isfile(salida):
-        tmp = pd.read_csv(salida, sep=";")
-        tmp.append(fila, ignore_index=True).to_csv(salida, sep=";", index=False)
-    else:
-        fila.to_csv(salida, sep=";", index=False)
-
-    print("---------------------------------------------------------")
-    print("Gardando resultado " + nombre)
+    return pd.DataFrame([datos], columns=columnas)
 
 
-def guardar_fallidas(fallidas):
-    with open('fallidas.txt', 'a') as f:
-        time = datetime.now().strftime("%Y/%m/%d %HH:%MM:%s")
-        f.write(f"{time} [Respuestas Fallidas]:\n")
-        for busqueda in fallidas:
-            f.write(busqueda + "\n")
+def agregar_fila(datos, fila):
+    return datos.append(fila, ignore_index=True)
 
 
-def buscar_locations(entrada, salida):
-    lista_hoteles = leer_entrada(entrada, columnas=[
-        c.COLUMNA_DIRECCION, c.COLUMNA_NOMBRE
-    ])
+def leer_csv_entrada(entrada):
+    return pd.read_csv(entrada, sep=";")
 
-    fallidas = []
 
-    print(f"Se buscaran {len(lista_hoteles)} direcciones")
-    respuesta_usuario = input("Continuar? (Y/n): ")
+def escribir_csv_salida(datos, salida):
+    datos.to_csv(salida, sep=";", index=False)
 
-    if respuesta_usuario.lower() != "y":
-        exit(0)
 
-    try:
-        output = pd.read_csv(salida, sep=";")
-        ultimo_resultado = len(output)
-    except FileNotFoundError:
-        ultimo_resultado = 0
+def buscar_geocodes(entrada, salida):
+    print('------------------------------------------------')
+    print('Buscando nombres y direcciones en:', entrada)
+    entrada_csv = leer_csv_entrada(entrada)
 
-    for idx, hotel in enumerate(lista_hoteles):
+    # filtrar columnas que no utilizamos
+    datos = entrada_csv[[c.COLUMNA_DIRECCION, c.COLUMNA_NOMBRE]]
 
-        if idx < ultimo_resultado:
+    ultimos_resultados = 0
+    columnas_con_nombre = [c.COLUMNA_NOMBRE] + c.COLUMNAS
+    datos_para_guardar = pd.DataFrame([], columns=columnas_con_nombre)
+
+    if os.path.exists(salida):
+        datos_salida = leer_csv_entrada(salida)
+        ultimos_resultados = len(datos_salida)
+        datos_para_guardar = datos_salida
+
+    # geopy Cliente para Google Geocode API
+    clienteGoogle = geocoders.GoogleV3(api_key=c.GOOGLE_API)
+
+    for idx, fila in enumerate(datos.values):
+
+        if idx + 1 <= ultimos_resultados:
             continue
 
-        busqueda = generar_busqueda(hotel)
+        busqueda = "{} {}".format(fila[0], fila[1])
+        print('------------------------------------------------')
+        print('Buscado datos para:', busqueda)
+        respuesta = pedir_google_geocode(clienteGoogle, busqueda.encode())
+        nueva_fila = generar_fila_csv(respuesta)
+        nueva_fila.insert(0, c.COLUMNA_NOMBRE, fila[1])
+        datos_para_guardar = agregar_fila(datos_para_guardar, nueva_fila)
+        print('------------------------------------------------')
+        print('Guardando respuesta:', busqueda)
+        escribir_csv_salida(datos_para_guardar, salida)
 
-        respuesta = buscar_resultados(busqueda,
-                                      c.GOOGLE_API, language=c.LANGUAGE)
-
-        if respuesta is None:
-            fallidas.append(busqueda)
-
-        nombre = hotel[1]
-        guardar_resupuesta(nombre, respuesta, salida)
-
-    guardar_fallidas(fallidas)
-
-    print("---------------------------------------------------------")
-    print('Busqueda Terminada!')
-    print('Busquedas Totales:', idx + 1 - ultimo_resultado)
-    print('Fallidas:', len(fallidas))
+    print('------------------------------------------------')
+    print("Busqueda Finalizada!")

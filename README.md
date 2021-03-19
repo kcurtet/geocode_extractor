@@ -8,13 +8,13 @@ devueltos por Google Geocode API en otro csv.
 ``` shell
 pip install -r requirements.txt
 # o
-pip install pandas geopy python-dotenv
+pip install pandas geopy
 ```
 
 
 ## Utilización
 
-Primero hay que configurar las variables `GOOGLE_API`, `INPUT_CSV` y `OUTPUT_CSV` en `constants.py`
+Primero hay que configurar las variables `GOOGLE_API`, `CSV_ENTRADA` y `CSV_SALIDA` en `constants.py`
 
 Luego ejecutar el programa
 
@@ -22,3 +22,19 @@ Luego ejecutar el programa
 python run.py
 ```
 
+
+# Variables
+
+Variables en el archivo `constants.py`
+
+`GOOGLE_API`: La API KEY de Google Geocode API.
+
+`CSV_ENTRADA`: CSV con las direcciones para buscar.
+
+`CSV_SALIDA`: CSV donde se guardaran los resultados.
+
+`LANGUAGE`: Idioma respuestas google.
+
+`COLUMNA_NOMBRE`: Nombre de la columna con el nombre del hotel.
+
+`COLUMNA_DIRECCION`: Nombre de la columna con la dirección del hotel.

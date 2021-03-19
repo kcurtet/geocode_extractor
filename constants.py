@@ -1,15 +1,9 @@
-import os
-from dotenv import load_dotenv
-
-# Cargar archivo .env
-load_dotenv()
-
-# La Clave API sacada de .env o entre ""
-GOOGLE_API = os.getenv("GOOGLE_API") or ""
+# La Clave API
+GOOGLE_API = ""
 
 # Nombre de archivos
-INPUT_CSV = "direcciones.csv"
-OUTPUT_CSV = "resultado.csv"
+CSV_ENTRADA = "direcciones.csv"
+CSV_SALIDA = "resultado.csv"
 
 # Columnas del csv para hacer la busqueda
 COLUMNA_NOMBRE = "nombre"
@@ -18,6 +12,8 @@ COLUMNA_DIRECCION = "direccion"
 # Idioma para Google Geocode API
 LANGUAGE = "fr"
 
-# Guardar las respuestas de google en DEBUG_FILE
-DEBUG = True
-DEBUG_FILE = 'google_debug.json'
+# Columnas que guardara de google. (Avisame para cambiarlas.)
+COLUMNAS = ['latitud', 'longitud', 'pais', 'pais_short',
+            'area_1', 'area_1_short', 'area_2', 'area_2_short',
+            'localidad', 'localidad_short', 'calle', 'numero_calle',
+            'codigo_postal', 'location_type']
