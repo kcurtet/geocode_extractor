@@ -1,5 +1,7 @@
+import os
+
 # La Clave API
-GOOGLE_API = ""
+GOOGLE_API = os.environ.get('API_KEY') or ""
 
 # Nombre de archivos
 CSV_ENTRADA = "direcciones.csv"
@@ -13,7 +15,9 @@ COLUMNA_DIRECCION = "direccion"
 LANGUAGE = "fr"
 
 # Columnas que guardara de google. (Avisame para cambiarlas.)
-COLUMNAS = ['latitud', 'longitud', 'pais', 'pais_short',
-            'area_1', 'area_1_short', 'area_2', 'area_2_short',
-            'localidad', 'localidad_short', 'calle', 'numero_calle',
-            'codigo_postal', 'location_type']
+COLUMNAS = [
+    'nombre', 'latitud', 'longitud', 'address', 'pais', 'pais_short',
+    'area_1', 'area_1_short', 'area_2', 'area_2_short',
+    'localidad', 'localidad_short', 'codigo_postal',
+    'calle', 'numero_calle', 'location_type'
+]
