@@ -14,7 +14,7 @@ COLUMNA_DIRECCION = "direccion"
 # Idioma para Google Geocode API
 LANGUAGE = "fr"
 
-# Columnas que guardara de google. (Avisame para cambiarlas.)
+# Nombre de las columas de CSV_SALIDA. El orden es importante.
 COLUMNAS = [
     'nombre', 'latitud', 'longitud', 'address', 'pais', 'pais_short',
     'area_1', 'area_1_short', 'area_2', 'area_2_short',

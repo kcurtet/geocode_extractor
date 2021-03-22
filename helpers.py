@@ -31,7 +31,7 @@ def buscar_geocodes(entrada, salida):
     entrada_csv = read_csv(entrada)
 
     # filtrar columnas que no utilizamos
-    datos_busqueda = entrada_csv[[c.COLUMNA_DIRECCION, c.COLUMNA_NOMBRE]]
+    datos_busqueda = entrada_csv[[c.COLUMNA_NOMBRE, c.COLUMNA_DIRECCION]]
 
     ultimos_resultados = 0
     resultados_google = crear_data_frame_vacio()
@@ -49,15 +49,17 @@ def buscar_geocodes(entrada, salida):
         if idx + 1 <= ultimos_resultados:
             continue
 
-        busqueda = "{} {}".format(hotel[0], hotel[1])
+        nombre, direccion = hotel
+
+        busqueda = "{} {}".format(nombre, direccion)
         print('------------------------------------------------')
         print('Buscado datos para:', busqueda)
 
-        location = geocode(busqueda)  # Geopy Location
+        location = geocode(busqueda.encode())  # Geopy Location
 
         print('------------------------------------------------')
         print('Guardando respuesta:', busqueda)
-        row = LocationExtractor(hotel[1], location).to_dict()
+        row = LocationExtractor(nombre, location).to_dict()
         resultados_google = add_row_to_dataframe(row, resultados_google)
         write_csv(resultados_google, salida)  # Save Results on each iteration.
 
