@@ -1,7 +1,7 @@
 import constants as c
 
 
-class LocationExtractor():
+class LocationParser():
     _columns = c.COLUMNAS
     _row = ["No hay resultados" for _ in _columns]
 
@@ -43,4 +43,4 @@ class LocationExtractor():
         return dict(zip(self._columns, self._row))
 
     def to_list(self):
-        return self._row
+        return list(self._row)

@@ -1,7 +1,7 @@
 import os
 
 # La Clave API
-GOOGLE_API = os.environ.get('API_KEY') or ""
+GOOGLE_API = os.environ.get('GOOGLE_API') or ""
 
 # Nombre de archivos
 CSV_ENTRADA = "direcciones.csv"
